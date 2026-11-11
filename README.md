@@ -1,16 +1,21 @@
 # GilDom
 
-Dalamud plugin for a linked gil roleplay. One person is the sub and the other is the dom. The number drawn on the sub's gil counter changes. Gil stored by the game server does not.
+## How to install
 
-## Install
+This installs the GilDom plugin. Both players do this on their own game.
 
-In Dalamud, open Settings, then Experimental, and add this custom plugin repository:
+1. Open Dalamud's settings.
+2. Open Experimental.
+3. Add this custom plugin repository:
 
 https://raw.githubusercontent.com/FricOwO/GilDom/master/gildom.json
 
-Install GilDom from the plugin list. Moodles is required for the status text.
+4. Install GilDom from the plugin list.
+5. Install Moodles too. GilDom uses it for the status text.
 
-Both players install the plugin. `/gildom` opens the window. The first time a character reaches the server, the server assigns that character an 8-character friend code. Copy it, paste your partner's code, choose "I will be the dom" or "I will be the sub", and send the request. Accepting locks the pair. A sub has one active dom. A dom can have several subs. Nicknames stay on your own computer.
+Dalamud plugin for a linked gil roleplay. One person is the sub and the other is the dom. The number drawn on the sub's gil counter changes. Gil stored by the game server does not.
+
+`/gildom` opens the window. The first time a character reaches the server, the server assigns that character an 8-character friend code. Copy it, paste your partner's code, choose "I will be the dom" or "I will be the sub", and send the request. Accepting locks the pair. A sub has one active dom. A dom can have several subs. Nicknames stay on your own computer.
 
 The gear at the top right opens Settings. There you can show, copy, replace, or request a new secret. A new secret keeps the same friend code and the same links. The previous secret stops working. **Cap the gil counter** is there too. While you are the sub and that box is on, the gil counter shows your allowance instead of the full amount.
 
