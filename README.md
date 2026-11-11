@@ -1,5 +1,7 @@
 # GilDom
 
+⚠️ GilDom is in beta. Expect changes, and keep a copy of your secret.
+
 ## How to install
 
 This installs the GilDom plugin. Both players do this on their own game.
