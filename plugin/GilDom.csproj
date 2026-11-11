@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Dalamud.NET.Sdk/15.0.0">
+  <PropertyGroup>
+    <Version>0.1.0.0</Version>
+    <Author>GilDom</Author>
+    <Name>GilDom</Name>
+    <Punchline>On-screen gil ledger for a linked sub and dom.</Punchline>
+    <Description>Exchange friend codes, agree who is sub and who is dom, then track a gil tax and ownership cap. The number drawn on the sub's client changes. Gil stored on the server does not.</Description>
+    <Tags>gil;roleplay;moodles</Tags>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/plugin/">
+    <Project Path="plugin/GilDom.csproj" />
+  </Folder>
+  <Folder Name="/relay/">
+    <Project Path="relay/GilDom.Relay.csproj" />
+  </Folder>
+</Solution>

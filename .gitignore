@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.suo
+relay-data.json
+*.log
+node_modules/
+.wrangler/
+.dev.vars
