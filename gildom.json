@@ -1,11 +1,11 @@
 [
   {
-    "Author": "GilDom",
+    "Author": "FricOwO",
     "Name": "GilDom",
     "InternalName": "GilDom",
     "AssemblyVersion": "0.1.0.0",
-    "Punchline": "On-screen gil ledger for a linked sub and dom.",
-    "Description": "Exchange friend codes, agree who is sub and who is dom, then track a gil tax and ownership cap. The number drawn on the sub's client changes. Gil stored on the server does not.",
+    "Punchline": "It was never your money",
+    "Description": "A plugin to about gildom",
     "ApplicableVersion": "any",
     "RepoUrl": "https://github.com/FricOwO/GilDom",
     "Tags": [
@@ -20,7 +20,7 @@
     "LoadPriority": 0,
     "AcceptsFeedback": true,
     "DownloadCount": 0,
-    "LastUpdate": 1794433111,
+    "LastUpdate": 1794434084,
     "DownloadLinkInstall": "https://github.com/FricOwO/GilDom/releases/download/v0.1.0.0/GilDom.zip",
     "DownloadLinkUpdate": "https://github.com/FricOwO/GilDom/releases/download/v0.1.0.0/GilDom.zip",
     "DownloadLinkTesting": "https://github.com/FricOwO/GilDom/releases/download/v0.1.0.0/GilDom.zip"

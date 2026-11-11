@@ -195,17 +195,39 @@ public sealed class MainWindow : Window, IDisposable
         if (ImGui.Button("Back"))
             showSettings = false;
         ImGui.SameLine();
-        ImGui.Text("Secret");
-        ImGui.TextWrapped("The server knows this character by this secret, and stores only a hash. A new secret keeps your friend code and your links. The previous one stops working, including on any other computer.");
+        ImGui.AlignTextToFramePadding();
+        ImGui.TextColored(Gold, "Settings");
+
+        DrawSectionTitle("Server");
+        var url = ServerAddress.Url;
+        var iconWidth = IconButtonWidth(FontAwesomeIcon.Copy);
+        var spacing = ImGui.GetStyle().ItemSpacing.X;
+        ImGui.SetNextItemWidth(Math.Max(1f, ImGui.GetContentRegionAvail().X - iconWidth - spacing));
+        ImGui.InputText("##server", ref url, url.Length, ImGuiInputTextFlags.ReadOnly);
+        ImGui.SameLine();
+        if (ImGuiComponents.IconButton("##copy-server", FontAwesomeIcon.Copy))
+            Copy("server", ServerAddress.Url);
+        if (ImGui.IsItemHovered())
+            ImGui.SetTooltip(Copied("server") ? "Copied" : "Copy");
+        DrawHint("GilDom always uses this server. It cannot be changed.");
+        DrawConnection();
+
+        DrawSectionTitle("Secret");
+        DrawHint("The server knows this character by this secret, and stores only a hash. A new secret keeps your friend code and your links. The previous one stops working, including on any other computer.");
         var flags = secretVisible ? ImGuiInputTextFlags.None : ImGuiInputTextFlags.Password;
         ImGui.SetNextItemWidth(-1f);
         ImGui.InputText("##secret", ref secretDraft, 80, flags);
         ImGui.Checkbox("Show secret", ref secretVisible);
+        if (confirmRotate)
+            ImGui.TextWrapped("This replaces the secret. The one you have now stops working.");
         if (!Plugin.Configuration.IsBound)
             ImGui.BeginDisabled();
         if (ImGui.Button("Save secret"))
             Plugin.Session.ChangeSecret(secretDraft);
         ImGui.SameLine();
+        if (ImGui.Button(Copied("secret") ? "Copied" : "Copy secret") && secretDraft.Length > 0)
+            Copy("secret", secretDraft);
+        ImGui.SameLine(0f, 24f);
         if (confirmRotate)
         {
             if (ImGui.Button("Replace the secret"))
@@ -223,14 +245,14 @@ public sealed class MainWindow : Window, IDisposable
             confirmRotate = true;
         }
 
-        ImGui.SameLine();
-        if (ImGui.Button(Copied("secret") ? "Copied" : "Copy secret") && secretDraft.Length > 0)
-            Copy("secret", secretDraft);
         if (!Plugin.Configuration.IsBound)
             ImGui.EndDisabled();
-        if (confirmRotate)
-            ImGui.TextWrapped("This replaces the secret. The one you have now stops working.");
-        ImGui.Spacing();
+        if (!string.IsNullOrWhiteSpace(Plugin.Session.Relay.SecretStatus))
+            ImGui.TextWrapped(Plugin.Session.Relay.SecretStatus);
+        if (!string.IsNullOrWhiteSpace(Plugin.Session.LastError))
+            ImGui.TextWrapped(Plugin.Session.LastError);
+
+        DrawSectionTitle("Gil counter");
         if (!Plugin.Configuration.IsBound)
             ImGui.BeginDisabled();
         var rewrite = Plugin.Configuration.RewriteGilDisplay;
@@ -240,16 +262,23 @@ public sealed class MainWindow : Window, IDisposable
             Plugin.Configuration.Save();
         }
 
-        if (ImGui.IsItemHovered())
-            ImGui.SetTooltip("While you are the sub, the gil counter shows your allowance instead of the full amount.");
         if (!Plugin.Configuration.IsBound)
             ImGui.EndDisabled();
+        DrawHint("While you are the sub, the gil counter shows your allowance instead of the full amount.");
+    }
+
+    private static void DrawSectionTitle(string title)
+    {
         ImGui.Spacing();
-        DrawConnection();
-        if (!string.IsNullOrWhiteSpace(Plugin.Session.Relay.SecretStatus))
-            ImGui.TextWrapped(Plugin.Session.Relay.SecretStatus);
-        if (!string.IsNullOrWhiteSpace(Plugin.Session.LastError))
-            ImGui.TextWrapped(Plugin.Session.LastError);
+        ImGui.TextColored(Gold, title);
+        ImGui.Separator();
+    }
+
+    private static void DrawHint(string text)
+    {
+        ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(0.72f, 0.52f, 0.60f, 1f));
+        ImGui.TextWrapped(text);
+        ImGui.PopStyleColor();
     }
 
     private static float IconButtonWidth(FontAwesomeIcon icon)
